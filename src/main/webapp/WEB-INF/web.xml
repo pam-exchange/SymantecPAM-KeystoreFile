@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	version="3.1">
+<display-name>keystorefile</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+	
+	<listener>
+        <listener-class>
+            com.ca.pam.extensions.core.servlet.ExtensionContextListener
+        </listener-class>
+    </listener>
+    
+    <!-- Filter to set Request Context for each request. -->
+    <filter>
+       <filter-name>RequestContextFilter</filter-name>
+       <filter-class>com.ca.pam.extensions.core.servlet.ExtensionsFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+       <filter-name>RequestContextFilter</filter-name>
+       <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+	<servlet>
+		<servlet-name>customConnectorApiServlet</servlet-name>
+  		<servlet-class>com.ca.pam.extensions.core.servlet.PAMServletContainer</servlet-class> 
+		<init-param>
+			<param-name>jersey.config.server.provider.packages</param-name>
+			<param-value>
+ch.pam_exchange.pam_tc.keystorefile.api,
+				com.ca.pam.extensions.core.api.exception
+			</param-value>
+		</init-param>		
+		<init-param>
+			<param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+            <param-name>jersey.config.server.wadl.disableWadl</param-name>
+            <param-value>true</param-value>
+        </init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>customConnectorApiServlet</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+</web-app>

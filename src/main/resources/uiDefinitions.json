@@ -1,0 +1,104 @@
+{
+	"application": {
+		"uiDefinition": {
+			"tabs": [
+				{
+					"id": "KeyStoreFileAppDetail",
+					"label": "KeyStore File",
+					"fields": [
+						{
+							"type": "RADIO",
+							"field": "location",
+							"label": "Location of keystore file",
+							"value": "local",
+							"values": [
+								{
+									"label": "Remote UNIX",
+									"value": "remoteUNIX"
+								},
+								{
+									"label": "Remote Windows",
+									"value": "remoteWindows"
+								},
+								{
+									"label": "Local TCF",
+									"value": "local"
+								}
+							]
+						},
+						{
+							"type": "NUMBER",
+							"field": "port",
+							"label": "Port (for Remote UNIX)",
+							"required": false,
+							"minValue": 0,
+							"maxValue": 65535,
+							"value": 22
+						}
+					]
+				}
+			]
+		}
+	},
+	"account": {
+		"uiDefinition": {
+			"tabs": [
+				{
+					"id": "KeyStoreFileAccDetail",
+					"label": "KeyStore File",
+					"fields": [
+						{
+							"type": "TARGETACCOUNT",
+							"field": "loginAccount",
+							"label": "Login account to remote server",
+							"required": false
+						},
+						{
+							"type": "TEXT",
+							"field": "filename",
+							"label": "Keystore (path+) filename",
+							"required": true,
+							"maxLength": 120,
+							"value": "/tmp/test.keystore"
+						},
+						{
+							"type": "RADIO",
+							"field": "keystoreFormat",
+							"label": "Keystore format",
+							"value": "PKCS12",
+							"values": [
+								{
+									"label": "PKCS12",
+									"value": "PKCS12"
+								},
+								{
+									"label": "JKS",
+									"value": "JKS"
+								}
+							]
+						},
+						{
+							"type": "CHECKBOX",
+							"field": "sameKeyPasswd",
+							"label": "Same password for key entry",
+							"value": true
+						},
+						{
+							"type": "TEXT",
+							"field": "alias",
+							"label": "Key entry alias (if different from username)",
+							"required": false,
+							"maxLength": 64
+						},
+						{
+							"type": "CHECKBOX",
+							"field": "createBackup",
+							"label": "Create backup file",
+							"value": true
+						}
+					]
+				}
+			]
+		}
+	}
+}
