@@ -23,7 +23,7 @@ keystore file is sent to the remote or local server.
 Finally, the temporary file on the TCF server is deleted.
 
 
-## Build ConfigFile connector
+## Build KeystoreFile connector
 
 ### Environment
 The environment used is as follows:
@@ -61,10 +61,6 @@ ch.pam_exchange.pam_tc.filecopy.api.handlers= java.util.logging.ConsoleHandler
 ## KeystoreFile connector in PAM
 
 ### Appliction
-
-When adding an application for the ConfigFile connector, you should use a password
-composition policy without special characters. The password inserted in the configuration
-file is not escaped.
 
 ![KeystoreFile Appliction](/docs/KeystoreFile-Application-1.png)
 ![KeystoreFile Appliction](/docs/KeystoreFile-Application-2.png)
