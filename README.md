@@ -40,6 +40,7 @@ The environment used is as follows:
 - Edit the files `keystorefile_messages.properties` and `KeyStoreFileMessageConstants.java`
 and adjust the message numbers to to match your environment.
 It is important that the numbers does not conflict with any other numbers from other connectors.
+- There is an important variable in the KeyStoreFile.java file. It is the constant EXTENDED_DEBUG. If this is set to true when compiling the connector, additional debugging information may be written to the catalina.out log file. If it is written will depend on the loglevel for the connector as defined in the Tomcat logging.properties file. If extended debugging is enabled at compile time, additional information including current and new passwords may be visible in the catalina.out log file. This should not be enabled when compiling the connector for a production environment.
 - Run the command `mvnw package` to compile the connector.
 - Copy the target connector `keystorefile.war` to the Tomcat `webapps_targetconnector` directory.
 - It is recommended to enable logging from the connector by adding the following to the

@@ -21,7 +21,7 @@ import ch.pam_exchange.pam_tc.filecopy.api.FileCopyMessageConstants;
 public class KeyStoreFile {
 
 	private static final Logger LOGGER = Logger.getLogger(KeyStoreFile.class.getName());
-	private static final boolean EXTENDED_DEBUG = true;
+	private static final boolean EXTENDED_DEBUG = false;
 
 	/*
 	 * Constants
