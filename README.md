@@ -80,7 +80,7 @@ This is the port used when establishing an SSH connection to a remote UNIX serve
 
 ### Account
 
-The information for a Config File account will require a login account. This account
+The information for a KeystoreFile account will require a login account. This account
 is an account configured in PAM. It can be a domain or local account.
 
 ![KeystoreFile Account](/docs/KeystoreFile-Account-1.png)
@@ -101,7 +101,7 @@ API/CLI field name: `filename`
 Valid value is a path+filename for a keystore file on the remomte or local TCF server.  
 For Windows servers the protocol used is SMB and you must specify a share/path to the file.
 This can be `c$/tmp/test.keystore` or any other network share on the server.
-For UNIX servers just specify the path and filename for the configuration file.
+For UNIX servers just specify the path and filename for the Keystore file.
 The login account must have read/write permissions to the path and file.
 For files on the local TCF server, specify the path+filename. The account running Tomcat
 must have read/write permissions to the path and file.
@@ -131,7 +131,7 @@ The field is only used if the same password is used both for the file and the ke
 API/CLI field name: `createBackup`  
 Valid values are `true` and `false`  
 If this is checked a backup of the keystore file is created. The login account
-must have permissions to create a new file in the path for the configuration file.
+must have permissions to create a new file in the path for the Keystore file.
 
 
 ## Example keystore
