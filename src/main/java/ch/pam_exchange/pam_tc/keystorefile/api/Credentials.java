@@ -115,7 +115,7 @@ public class Credentials {
    @Produces(MediaType.APPLICATION_JSON)
    public Response credentialsValidate(String json) {
 
-	  LOGGER.fine(LoggerWrapper.logMessage("JSON= "+json));
+	  //LOGGER.fine(LoggerWrapper.logMessage("JSON= "+json));
 	   
       String duration;
       final long methodStartTime = System.currentTimeMillis();
@@ -184,7 +184,7 @@ public class Credentials {
    @Consumes(MediaType.TEXT_PLAIN)
    @Produces(MediaType.APPLICATION_JSON)
    public Response credentialsUpdate(String json) {
-	  LOGGER.fine(LoggerWrapper.logMessage("JSON= "+json));
+	  // LOGGER.fine(LoggerWrapper.logMessage("JSON= "+json));
 
 	  ExtensionResponse response = null;
       String duration;

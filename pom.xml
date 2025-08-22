@@ -5,7 +5,7 @@
     
     <groupId>ch.pam_exchange.pam_tc</groupId>
     <artifactId>keystorefile</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>war</packaging>
 
     <repositories>
@@ -34,7 +34,7 @@
 -->
 		<dependency><groupId>jakarta.websocket</groupId><artifactId>jakarta.websocket-api</artifactId><version>2.0.0</version></dependency>
 		<dependency><groupId>com.ca.pam</groupId><artifactId>capamextensionscore</artifactId><version>4.21.0.82</version></dependency>
-		<dependency><groupId>eu.agno3.jcifs</groupId><artifactId>jcifs-ng</artifactId><version>2.1.9</version></dependency>
+		<dependency><groupId>eu.agno3.jcifs</groupId><artifactId>jcifs-ng</artifactId><version>2.1.10</version></dependency>
 		<dependency><groupId>com.github.mwiede</groupId><artifactId>jsch</artifactId><version>0.2.20</version></dependency>
 
         <!-- Add additional dependencies -->

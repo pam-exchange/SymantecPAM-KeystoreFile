@@ -130,8 +130,11 @@ public class FileCopy {
 			baseCxt = new BaseContext(config);
 			baseCxt.withCredentials(auth);
 			
-			LOGGER.fine(LoggerWrapper.logMessage("smb://"+this.hostname+"/"+src));
-			inp= new SmbFileInputStream(new SmbFile("smb://"+this.hostname+"/"+ src.replace("\\", "/"), baseCxt.withCredentials(this.auth)));
+			String inpFilename= "smb://"+this.hostname+"/"+src.replace("\\", "/");
+			SmbFile inpFile= new SmbFile(inpFilename, baseCxt.withCredentials(this.auth));
+			LOGGER.fine(LoggerWrapper.logMessage(inpFilename));
+			
+			inp= new SmbFileInputStream(inpFile);
 	        out= new FileOutputStream(dst);
 
 	        for (int length; (length=inp.read(buffer))!=-1; ) {
@@ -253,21 +256,28 @@ public class FileCopy {
 			Configuration config = new PropertyConfiguration(jcifsProperties);
 			baseCxt = new BaseContext(config);
 			baseCxt.withCredentials(auth);
-			
-			LOGGER.fine(LoggerWrapper.logMessage("smb://"+this.hostname+"/"+src));
-	        inp= new FileInputStream(src);
-			out= new SmbFileOutputStream(new SmbFile("smb://"+this.hostname+"/"+ dst.replace("\\", "/"), baseCxt.withCredentials(this.auth)));
 
+			String outFilename= "smb://"+this.hostname+"/"+ dst.replace("\\", "/");
+			SmbFile outFile= new SmbFile(outFilename, baseCxt.withCredentials(this.auth));
+			try {
+				LOGGER.fine(LoggerWrapper.logMessage("deleting '"+outFilename+"'"));
+		        outFile.delete();
+		        LOGGER.fine(LoggerWrapper.logMessage("deleted '"+outFilename+"'"));
+			} 
+			catch (Exception e){}
+	        
+	        inp= new FileInputStream(src);
+			out= new SmbFileOutputStream(outFile);
+
+			LOGGER.fine(LoggerWrapper.logMessage("write input to '"+outFilename+"'"));
 	        for (int length; (length = inp.read(buffer)) != -1; ){
 	        	LOGGER.fine(LoggerWrapper.logMessage("inp.read length="+length));
 	        	out.write(buffer, 0, length);
 	        }
-	        
 		} 
 		catch (jcifs.smb.SmbAuthException e) {
 	        LOGGER.severe(LoggerWrapper.logMessage("Authentication failure"));
 			throw new ExtensionException(FileCopyMessageConstants.ERR_AUTH, false, this.hostname,this.username);
-        	
 	    } 
 		catch (jcifs.smb.SmbException e) {
 			if (e.getMessage().equals("The system cannot find the file specified.")) {
@@ -276,7 +286,6 @@ public class FileCopy {
 	        }
 			LOGGER.log(Level.SEVERE, LoggerWrapper.logMessage("General jcifs.smb.SmbException"), e);
 			throw new ExtensionException(MessageConstants.SERVER_ERROR, false);
-	        
 	    } 
 		catch (Exception e){
 			LOGGER.log(Level.SEVERE, LoggerWrapper.logMessage("General Exception"), e);
