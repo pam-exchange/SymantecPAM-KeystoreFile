@@ -393,11 +393,13 @@ public class KeyStoreFile {
 			kfc.copyFromRemote(filename, tmpFilename);
 			LOGGER.finer(LoggerWrapper.logMessage("File copy complete"));
 
-			String backupFilename= kfc.getBackupFilename(filename);
-			LOGGER.finer(LoggerWrapper.logMessage("backupFilename= "+backupFilename));
-
-			kfc.copyToRemote(tmpFilename, backupFilename);
-			LOGGER.info(LoggerWrapper.logMessage("Backup complete (remote): "+tmpFilename+" --> "+backupFilename));
+			if (backup) {
+				String backupFilename= kfc.getBackupFilename(filename);
+				LOGGER.finer(LoggerWrapper.logMessage("backupFilename= "+backupFilename));
+	
+				kfc.copyToRemote(tmpFilename, backupFilename);
+				LOGGER.info(LoggerWrapper.logMessage("Backup complete (remote): "+tmpFilename+" --> "+backupFilename));
+			}
 			
 			return tmpFilename;
 		}
