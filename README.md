@@ -173,5 +173,10 @@ for the user must be sufficient to write to the directory and the file used.
 
 ## Version history
 
-1.0.0 - Initial release
+! Version ! Change !
+! ---- ! ---- !
+! 1.1.0 ! - Fixed backup at verify !
+! ! - Updated version of libraries used !
+! ---- ! ---- !
+! 1.0.0 ! - Initial release !
 
