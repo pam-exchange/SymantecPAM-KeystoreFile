@@ -279,8 +279,14 @@ public class KeyStoreFile {
 
 			if (this.sameKeyPasswd) {
 				KeyEntry ke= getKey(ks,this.alias,this.oldPassword);
-				LOGGER.fine(LoggerWrapper.logMessage("Key is found in keystore"));
-
+				
+				if (null==ke || null==ke.key) {
+					LOGGER.log(Level.SEVERE, LoggerWrapper.logMessage("Key or alias is not found"));
+					throw new ExtensionException(KeyStoreFileMessageConstants.ERR_KEYSTORE_ALIAS, false);
+				}
+				else
+					LOGGER.fine(LoggerWrapper.logMessage("Key is found in keystore"));
+				
 				/*
 				 * Update password for key with cert. chain (or null)
 				 */
